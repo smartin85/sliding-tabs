@@ -4,7 +4,9 @@
 
 sliding-tabs is a web component buildt with [Stencil][stencil-url] for slideable tabs or just for a simple slider.
 
+[Demo with fixed tabs](http://plnkr.co/edit/0LM6GJtEUdn6kY7eNk16?p=preview)
 
+[Demo with scrollable tabs](http://plnkr.co/edit/BXhb0cF7vdHc66XFqol4?p=preview)
 
 ## Using this component
 
