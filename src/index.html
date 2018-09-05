@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+  <script src="/build/sliding-tabs.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .my-toolbar {
+      height: 70px;
+      border-top: 1px solid #888;
+    }
+
+    .my-indicator {
+      height: 3px;
+      width: 100%;
+      background: #0080ff;
+    }
+
+    sliding-tabs-button {
+      background: #fff;
+      border-right: 1px solid #aaa;
+      height: 67px;
+    }
+
+    sliding-tabs-button:last-child {
+      border: none;
+    }
+
+    .button {
+      text-align: center;
+      padding-top: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    sliding-tabs-button.active {
+      background: #0080ff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <sliding-tabs>
+    <sliding-tabs-content>
+      <sliding-tab tab-name="a">Content A</sliding-tab>
+      <sliding-tab tab-name="b">Content B</sliding-tab>
+      <sliding-tab tab-name="c">Content C</sliding-tab>
+    </sliding-tabs-content>
+    <sliding-tabs-toolbar class="my-toolbar" indicator-placement="top" id="toolbar">
+      <div class="my-indicator" slot="indicator"></div>
+      <sliding-tabs-button for-tab="a">
+        <div class="button">Button A</div>
+      </sliding-tabs-button>
+      <sliding-tabs-button for-tab="b">
+        <div class="button">Button B</div>
+      </sliding-tabs-button>
+      <sliding-tabs-button for-tab="c">
+        <div class="button">Button C</div>
+      </sliding-tabs-button>
+    </sliding-tabs-toolbar>
+  </sliding-tabs>
+
+
+</body>
+
+</html>

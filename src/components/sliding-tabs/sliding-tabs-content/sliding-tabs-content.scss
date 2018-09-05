@@ -1,0 +1,29 @@
+.sliding-tabs-content {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.sliding-tabs-scrollarea {
+	position: relative;
+	height: 100%;
+	left: 0;
+	transition: left .3s ease-in-out;
+	flex-grow: 1;
+	font-size: 0;
+
+	&.sliding-tabs-no-transition {
+		transition: none;
+	}
+}
+
+sliding-tab {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	font-size: 1rem;
+}

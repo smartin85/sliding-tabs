@@ -1,0 +1,15 @@
+.sliding-tabs-indicator {
+	position: relative;
+	transition-property: left, width;
+	transition-duration: .3s;
+	transition-timing-function: ease-in-out;
+	display: block;	
+
+	&.sliding-tabs-no-transition {
+		transition: none;
+	}
+}
+
+.sliding-tabs-indicator-container {
+	width: 100%;
+}
