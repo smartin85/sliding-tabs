@@ -13,6 +13,8 @@ export class ScrollTabs {
 	@Element() element: HTMLElement;
 	@Event() tabChanged: EventEmitter;
 	@Prop({ mutable: true }) activeTabIndex?: number;
+	@Prop({ mutable: true }) activeTab?: string;
+
 	@State() tabs: string[] = [];
 
 	@Listen('slidingTabsTabLoaded', { capture: true })
@@ -58,8 +60,15 @@ export class ScrollTabs {
 		this.initTabs();
 	}
 
+	componentDidUpdate() {
+		if(this.activeTabIndex !== this.tabs.indexOf(this.activeTab)) {
+			this.setActiveTabIndex(this.tabs.indexOf(this.activeTab));
+		}
+	}
+
 	private setActiveTabIndex(index: number) {
 		this.activeTabIndex = index;
+		this.activeTab = this.tabs[index];
 		if(this._toolbar) {
 			this._toolbar.movePanIndicator();
 			this._toolbar.setActiveTab(this.tabs[index], this.activeTabIndex);
@@ -77,8 +86,10 @@ export class ScrollTabs {
 		for (let i = 0; i < tabs.length; i++) {
 			tabs[i].setStateHandler((name: string) => this.setTabName(i, name));
 		}
-
-		if (tabs.length && !this.activeTabIndex) {
+		if(this.activeTab) {
+			this.activeTabIndex = this.tabs.indexOf(this.activeTab) || 0;
+		}
+		if (tabs.length) {
 			this.setActiveTabIndex(this.activeTabIndex || 0);
 		}
 	}

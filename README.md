@@ -197,6 +197,12 @@ There are two more Slots you can use for additional buttons:
 <sliding-tabs active-tab-index="1">...</sliding-tabs>	
 ```
 
+`active-tab`: The name of the active tab
+
+```html
+<sliding-tabs active-tab="c">...</sliding-tabs>
+```
+
 #### Events
 `tabChanged`: Fires everytime a tab changed. The event contains a property details with the index and name of the current tab:
 ```typescript
@@ -222,6 +228,13 @@ interface tabChandedEvent {
 <sliding-tabs-toolbar scrollable="true">...</sliding-tabs-toolbar>
 ```
 
+
+`active-tab-position`: The position of the active tab when `scrollable="true"`. Possible values are `left`, `center` and `right`.
+
+```html
+<sliding-tabs-toolbar scrollable="true" active-tab-position="center">...</sliding-tabs-toolbar>
+```
+
 ### Methods on the DOM-Element
 `scrollToButton(name: string)`: Scroll to a specific button (if `scrollable="true"`)
 
@@ -231,7 +244,12 @@ interface tabChandedEvent {
 
 `setActiveTab()`: Switch to a specific tab.
 
+## Changelog
 
+### 1.1.0
+* Added `active-tab` property to `scroll-tabs`
+* Added `active-tab-position` property to `scroll-tabs-toolbar`
+* Improved performance
 
 
 [stencil-url]: https://stenciljs.com/

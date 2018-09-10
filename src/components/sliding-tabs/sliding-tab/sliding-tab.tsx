@@ -6,6 +6,7 @@ import { Component, Prop, Event, EventEmitter, Method } from '@stencil/core';
 })
 export class SlidingTab {
 	private _stateHandler?: (tabName?: string) => void;
+	private _tabName: string;
 
 	@Prop() tabName: string;
 	@Event({bubbles: true, eventName: 'slidingTabLoaded'}) tabLoaded: EventEmitter;
@@ -18,9 +19,14 @@ export class SlidingTab {
 
 	componentDidLoad() {
 		this.tabLoaded.emit();
+		this._tabName = this.tabName;
 	}
 
-	componentDidUpdate() {
+	componentWillUpdate() {
+		if(this._tabName === this.tabName) {
+			return false;
+		}
+		this._tabName = this.tabName;
 		this.publishState();
 	}
 

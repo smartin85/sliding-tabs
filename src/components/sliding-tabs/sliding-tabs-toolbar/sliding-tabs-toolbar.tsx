@@ -19,6 +19,7 @@ export class SlidingTabsToolbar {
 	@State() tabs: string[];
 	@Prop() scrollable: boolean;
 	@Prop() indicatorPlacement: 'top' | 'bottom';
+	@Prop() activeTabPosition?: 'left' | 'center' | 'right';
 
 	@Event() slidingTabsToolbarLoaded: EventEmitter;
 
@@ -62,11 +63,15 @@ export class SlidingTabsToolbar {
 			let button = target.getElement(),
 				newX = this._buttonContainer.offsetLeft;
 
-			if (button.offsetLeft + button.offsetWidth > this._buttonContainer.offsetWidth) {
+			if(this.activeTabPosition === 'left') {
+				newX = -target.offsetLeft;
+			} else if(this.activeTabPosition === 'center') {
+				newX = -target.offsetLeft + this._containerElement.offsetWidth / 2 - target.offsetWidth / 2;
+			} else if(this.activeTabPosition === 'right') {
 				newX = this._buttonContainer.offsetWidth - button.offsetLeft - button.offsetWidth;
-			}
-
-			if (button.offsetLeft < -this._buttonContainer.offsetLeft) {
+			} else if (button.offsetLeft + button.offsetWidth > this._buttonContainer.offsetWidth) {
+				newX = this._buttonContainer.offsetWidth - button.offsetLeft - button.offsetWidth;
+			} else if (button.offsetLeft < -this._buttonContainer.offsetLeft) {
 				newX = -button.offsetLeft;
 			}
 
@@ -77,11 +82,8 @@ export class SlidingTabsToolbar {
 
 	@Method()
 	scrollToRight() {
-		const targetRef = this._buttonContainer.offsetWidth - this._buttonContainer.offsetLeft;
-		const target = this._buttons.find(b => {
-			const element = b.getElement();
-			return element.offsetLeft + element.offsetWidth > targetRef;
-		});
+		const targetRef = this._buttonContainer.offsetWidth - this._buttonContainer.offsetLeft - this._containerElement.offsetWidth / 2;
+		const target = this._buttons.find(b => b.getElement().offsetLeft > targetRef);
 		if(target) {
 			this.scrollToButton(target.forTab);
 		}
@@ -89,8 +91,11 @@ export class SlidingTabsToolbar {
 
 	@Method()
 	scrollToLeft() {
-		const targetRef = this._buttonContainer.offsetLeft;
-		const targets = this._buttons.filter(b =>b.getElement().offsetLeft + targetRef < 0);
+		const targetRef = this._buttonContainer.offsetWidth - this._buttonContainer.offsetLeft - this._containerElement.offsetWidth / 2;
+		const targets = this._buttons.filter(b => {
+			const e =b.getElement();
+			return e.offsetLeft + e.offsetWidth < targetRef;
+		});
 		if(targets.length) {
 			this.scrollToButton(targets[targets.length -1].forTab);
 		}

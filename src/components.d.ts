@@ -45,6 +45,7 @@ declare global {
     }
 
     interface SlidingTabsToolbar {
+      'activeTabPosition': 'left' | 'center' | 'right';
       'indicatorPlacement': 'top' | 'bottom';
       'movePanIndicator': (val?: number) => void;
       'scrollToButton': (name: string) => void;
@@ -56,6 +57,7 @@ declare global {
     }
 
     interface SlidingTabs {
+      'activeTab': string;
       'activeTabIndex': number;
     }
   }
@@ -147,12 +149,14 @@ declare global {
     }
 
     export interface SlidingTabsToolbarAttributes extends HTMLAttributes {
+      'activeTabPosition'?: 'left' | 'center' | 'right';
       'indicatorPlacement'?: 'top' | 'bottom';
       'onSlidingTabsToolbarLoaded'?: (event: CustomEvent) => void;
       'scrollable'?: boolean;
     }
 
     export interface SlidingTabsAttributes extends HTMLAttributes {
+      'activeTab'?: string;
       'activeTabIndex'?: number;
       'onTabChanged'?: (event: CustomEvent) => void;
     }
