@@ -22,7 +22,7 @@ sliding-tabs is a web component buildt with [Stencil][stencil-url] for slideable
 
 ### In a stencil-starter app
 - Run `npm install sliding-tabs --save`
-- Add `{ name: 'sliding-tabs' }` to your [collections](https://github.com/ionic-team/stencil-starter/blob/master/stencil.config.js#L5)
+- Add `{ name: 'sliding-tabs' }` to your collections
 - Then you can use the component
 
 ### In a Angular or Ionic Project

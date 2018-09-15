@@ -127,10 +127,12 @@ export class SlidingTabsToolbar {
 	}
 
 	private initWheelHandler() {
-		this._buttonContainer.removeEventListener('wheel', this._wheelHandler);
-		if (this.scrollable) {
-			this._buttonContainer.addEventListener('wheel', this._wheelHandler);
-		}
+		if(this._buttonContainer) {
+			this._buttonContainer.removeEventListener('wheel', this._wheelHandler);
+			if (this.scrollable) {
+				this._buttonContainer.addEventListener('wheel', this._wheelHandler);
+			}
+		}		
 	}
 
 	private handleWheel(ev: WheelEvent) {
