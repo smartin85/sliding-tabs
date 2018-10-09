@@ -14,7 +14,7 @@ export class ScrollTabs {
 	@Event() tabChanged: EventEmitter;
 	@Prop({ mutable: true }) activeTabIndex?: number;
 	@Prop({ mutable: true }) activeTab?: string;
-
+	
 	@State() tabs: string[] = [];
 
 	@Listen('slidingTabsTabLoaded', { capture: true })
@@ -67,16 +67,18 @@ export class ScrollTabs {
 	}
 
 	private setActiveTabIndex(index: number) {
-		this.activeTabIndex = index;
-		this.activeTab = this.tabs[index];
-		if(this._toolbar) {
-			this._toolbar.movePanIndicator();
-			this._toolbar.setActiveTab(this.tabs[index], this.activeTabIndex);
-		}
-		if(this._content) {
-			this._content.activeTabIndex = this.activeTabIndex;
-		}
-		this.tabChanged.emit({name: this.tabs[index], index: index});
+		if(this.tabs[index]) {
+			this.activeTabIndex = index;
+			this.activeTab = this.tabs[index];
+			if(this._toolbar) {
+				this._toolbar.movePanIndicator();
+				this._toolbar.setActiveTab(this.tabs[index], this.activeTabIndex);
+			}
+			if(this._content) {
+				this._content.activeTabIndex = this.activeTabIndex;
+			}
+			this.tabChanged.emit({name: this.tabs[index], index: index});
+		}		
 	}
 
 	private initTabs() {

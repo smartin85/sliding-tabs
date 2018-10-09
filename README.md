@@ -212,6 +212,15 @@ interface tabChandedEvent {
 }
 ```
 
+### sliding-tabs-content
+
+#### Parameters
+`drag-threshold`: Number of pixels that must be swiped through before the drag event triggers (default: 20)
+
+```html
+<sliding-tabs-content drag-threshold="50">...</sliding-tabs-content>
+```
+
 
 ### sliding-tabs-toolbar Element
 
@@ -245,6 +254,10 @@ interface tabChandedEvent {
 `setActiveTab()`: Switch to a specific tab.
 
 ## Changelog
+
+### 1.2.0
+* Added `drag-threshold` property to `sliding-tabs-content`
+* Only change activeTabIndex if tab exists
 
 ### 1.1.0
 * Added `active-tab` property to `scroll-tabs`

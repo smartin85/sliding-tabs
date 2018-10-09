@@ -36,7 +36,7 @@ declare global {
     }
 
     interface SlidingTabsContent {
-
+      'dragThreshold': number;
     }
 
     interface SlidingTabsIndicator {
@@ -138,6 +138,7 @@ declare global {
     }
 
     export interface SlidingTabsContentAttributes extends HTMLAttributes {
+      'dragThreshold'?: number;
       'onSlidingTabsActiveTabChange'?: (event: CustomEvent) => void;
       'onSlidingTabsContentLoaded'?: (event: CustomEvent) => void;
       'onSlidingTabsPanChange'?: (event: CustomEvent) => void;

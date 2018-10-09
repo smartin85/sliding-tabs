@@ -16,7 +16,7 @@ export class PanGesture {
 	private _flickTimer;
 	private _avoidPanning: boolean;
 
-	constructor(private _element: HTMLElement) {
+	constructor(private _element: HTMLElement, private dragThreshold: number = 20) {
 		let ref = this._element.parentElement;
 		while(ref && !ref.offsetWidth) {
 			ref = ref.parentElement;
@@ -69,7 +69,7 @@ export class PanGesture {
 		var coords = ev.touches.item(0),
 			delta = Math.abs(coords.clientX - this._startX);
 
-		if(Math.abs(coords.clientY - this._startY) < delta && delta && !this._avoidPanning) {
+		if(Math.abs(coords.clientY - this._startY) < delta && delta && !this._avoidPanning && delta > this.dragThreshold) {
 			if(this.isContentScrolled(ev.target)) {
 				var newPos = this._startPos + (coords.clientX - this._startX);
 	

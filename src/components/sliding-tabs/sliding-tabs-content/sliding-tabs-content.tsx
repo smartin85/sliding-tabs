@@ -1,4 +1,4 @@
-import { Component, State, Event, EventEmitter } from '@stencil/core';
+import { Component, State, Event, EventEmitter, Prop } from '@stencil/core';
 import { PanGesture } from '../PanGesture';
 
 @Component({
@@ -9,6 +9,8 @@ export class SlidingTabsContent {
 	private _currentPanIndex?: number;
 	private _panGesture: PanGesture;
 	private _tabScrollArea: HTMLElement;
+
+	@Prop() dragThreshold?: number;
 	
 	@State() activeTabIndex?: number;
 	@State() tabs: string[];
@@ -28,7 +30,7 @@ export class SlidingTabsContent {
 	}
 
 	private initPanning() {
-		this._panGesture = new PanGesture(this._tabScrollArea);
+		this._panGesture = new PanGesture(this._tabScrollArea, this.dragThreshold);
 		this._panGesture.onStart(() => {
 			this._tabScrollArea.classList.add('sliding-tabs-no-transition');
 		});
