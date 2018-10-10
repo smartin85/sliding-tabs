@@ -49,6 +49,7 @@ export class ScrollTabs {
 	@Listen('slidingTabsToolbarLoaded', {capture: true})
 	handleTabsToolbarLoaded(ev: CustomEvent<SlidingTabsToolbar>) {
 		this._toolbar = ev.detail;
+		this._content && this.activeTab && this.setActiveTabIndex(this.activeTabIndex);
 	}
 
 	@Listen('slidingTabsActiveTabChange', {capture: true})
