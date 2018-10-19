@@ -16,7 +16,7 @@ export class PanGesture {
 	private _flickTimer;
 	private _avoidPanning: boolean;
 
-	constructor(private _element: HTMLElement, private dragThreshold: number = 20) {
+	constructor(private _element: HTMLElement, private dragThreshold: number = 20, private flickDistance: number = 50) {
 		let ref = this._element.parentElement;
 		while(ref && !ref.offsetWidth) {
 			ref = ref.parentElement;
@@ -94,7 +94,7 @@ export class PanGesture {
 		clearTimeout(this._flickTimer);
 		if(!this._longPress) {
 			let newX = ev.changedTouches.item(0).clientX;
-			if(this._onFlick && Math.abs(newX - this._startX) > 50) {
+			if(this._onFlick && Math.abs(newX - this._startX) > this.flickDistance) {
 				this._onFlick(newX < this._startX ? 1 : -1);
 				return;
 			}

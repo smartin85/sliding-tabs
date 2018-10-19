@@ -11,6 +11,7 @@ export class SlidingTabsContent {
 	private _tabScrollArea: HTMLElement;
 
 	@Prop() dragThreshold?: number;
+	@Prop() flickDistance?: number;
 	
 	@State() activeTabIndex?: number;
 	@State() tabs: string[];
@@ -30,7 +31,7 @@ export class SlidingTabsContent {
 	}
 
 	private initPanning() {
-		this._panGesture = new PanGesture(this._tabScrollArea, this.dragThreshold);
+		this._panGesture = new PanGesture(this._tabScrollArea, this.dragThreshold, this.flickDistance);
 		this._panGesture.onStart(() => {
 			this._tabScrollArea.classList.add('sliding-tabs-no-transition');
 		});
