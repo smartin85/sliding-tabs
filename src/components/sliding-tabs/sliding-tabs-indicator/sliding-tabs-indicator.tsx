@@ -14,7 +14,7 @@ export class SlidingTabsIndicator {
 
 	@Method()
 	movePanIndicator(percentage?: number) {
-		if (this._buttons && typeof this.activeTabIndex === 'number') {
+		if (this._buttons && typeof this.activeTabIndex === 'number' && this._buttons[this.activeTabIndex]) {
 			if (typeof percentage === 'number') {
 				let offset = (this._buttons.length - 1) * percentage - this.activeTabIndex,
 					left = this._buttons[this.activeTabIndex].offsetLeft, 

@@ -39,7 +39,7 @@ export class SlidingTabsToolbar {
 
 	@Method()
 	setActiveTab(name: string, index?: number) {
-		index = index || this.tabs.indexOf(name);
+		index = index || (this.tabs && this.tabs.indexOf(name));
 		this.activeTabIndex = index;
 		this._buttons.forEach(b => b.active = b.forTab === name);
 		this._panIndicator && (this._panIndicator.activeTabIndex = this.activeTabIndex);
