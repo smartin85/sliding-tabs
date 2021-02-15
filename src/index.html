@@ -2,12 +2,14 @@
 <html dir="ltr" lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-	<title>Stencil Component Starter</title>
-	<script src="/build/sliding-tabs.js"></script>
-	<style>
-		/* body {
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/sliding-tabs.esm.js"></script>
+  <script nomodule src="/build/sliding-tabs.js"></script>
+  <style>
+    body {
       margin: 0;
       padding: 0;
     }
@@ -15,7 +17,7 @@
 
     .my-toolbar {
       height: 70px;
-      border-top: 1px solid #888;
+      border-bottom: 1px solid #888;
     }
 
     .my-indicator {
@@ -36,74 +38,33 @@
 
     .button {
       text-align: center;
+      padding: 1rem;
       padding-top: 1.5rem;
       font-weight: bold;
       cursor: pointer;
       overflow: hidden;
       text-overflow: ellipsis;
+      pointer-events: none;
+    }
+
+    .pager-item {
+      text-align: center;
+      padding: 1rem;
+      padding-top: 1.5rem;
+      font-weight: bold;
+      background: #ccc;
+      height: 100%;
+      cursor: pointer;
     }
 
     sliding-tabs-button.active {
       background: #0080ff;
-    } */
-
-		body {
-			margin: 0;
-			padding: 0;
-		}
-
-
-		.my-toolbar {
-			height: 70px;
-			border-bottom: 1px solid #888;
-		}
-
-		.my-indicator {
-			height: 3px;
-			width: 100%;
-			background: #0080ff;
-		}
-
-		sliding-tabs-button {
-			background: #fff;
-			border-right: 1px solid #aaa;
-			height: 67px;
-		}
-
-		sliding-tabs-button:last-child {
-			border: none;
-		}
-
-		.button {
-			text-align: center;
-			padding: 1rem;
-			padding-top: 1.5rem;
-			font-weight: bold;
-			cursor: pointer;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			pointer-events: none;
-		}
-
-		.pager-item {
-			text-align: center;
-			padding: 1rem;
-			padding-top: 1.5rem;
-			font-weight: bold;
-			background: #ccc;
-			height: 100%;
-			cursor: pointer;
-		}
-
-		sliding-tabs-button.active {
-			background: #0080ff;
-		}
-	</style>
+    }
+  </style>
 </head>
 
 <body>
-
-	<!-- <sliding-tabs active-tab="b">
+  <!-- <sliding-tabs active-tab="b">
     <sliding-tabs-content>
       <sliding-tab tab-name="a">Content A</sliding-tab>
       <sliding-tab tab-name="b">Content B</sliding-tab>
@@ -123,103 +84,102 @@
     </sliding-tabs-toolbar>
   </sliding-tabs> -->
 
-	<sliding-tabs>
-		<sliding-tabs-toolbar class="my-toolbar" scrollable="true" indicator-placement="bottom" id="toolbar" active-tab-position="center">
-			<div class="my-indicator" slot="indicator"></div>
-			<div slot="toolbar-left" class="pager-item" id="previous">&lt;</div>
-			<div slot="toolbar-right" class="pager-item" id="next">&gt;</div>
-			<sliding-tabs-button for-tab="a">
-				<div class="button">Button A</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="b">
-				<div class="button">Button B</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="c">
-				<div class="button">Button C</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="d">
-				<div class="button">Button D</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="e">
-				<div class="button">Button E</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="f">
-				<div class="button">Button F</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="g">
-				<div class="button">Button G</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="h">
-				<div class="button">Button H</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="i">
-				<div class="button">Button I</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="j">
-				<div class="button">Button J</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="k">
-				<div class="button">Button K</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="l">
-				<div class="button">Button L</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="m">
-				<div class="button">Button M</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="n">
-				<div class="button">Button N</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="o">
-				<div class="button">Button O</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="p">
-				<div class="button">Button P</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="q">
-				<div class="button">Button Q</div>
-			</sliding-tabs-button>
-			<sliding-tabs-button for-tab="r">
-				<div class="button">Button R</div>
-			</sliding-tabs-button>
-		</sliding-tabs-toolbar>
-		<sliding-tabs-content drag-threshold="200">
-			<sliding-tab tab-name="a">Content A</sliding-tab>
-			<sliding-tab tab-name="b">Content B</sliding-tab>
-			<sliding-tab tab-name="c">Content C</sliding-tab>
-			<sliding-tab tab-name="d">Content D</sliding-tab>
-			<sliding-tab tab-name="e">Content E</sliding-tab>
-			<sliding-tab tab-name="f">Content F</sliding-tab>
-			<sliding-tab tab-name="g">Content G</sliding-tab>
-			<sliding-tab tab-name="h">Content H</sliding-tab>
-			<sliding-tab tab-name="i">Content I</sliding-tab>
-			<sliding-tab tab-name="j">Content J</sliding-tab>
-			<sliding-tab tab-name="k">Content K</sliding-tab>
-			<sliding-tab tab-name="l">Content L</sliding-tab>
-			<sliding-tab tab-name="m">Content M</sliding-tab>
-			<sliding-tab tab-name="n">Content N</sliding-tab>
-			<sliding-tab tab-name="o">Content O</sliding-tab>
-			<sliding-tab tab-name="p">Content P</sliding-tab>
-			<sliding-tab tab-name="q">Content Q</sliding-tab>
-			<sliding-tab tab-name="r">Content R</sliding-tab>
-		</sliding-tabs-content>
-	</sliding-tabs>
+  <sliding-tabs>
+      <sliding-tabs-toolbar class="my-toolbar" scrollable="true" indicator-placement="bottom" id="toolbar" active-tab-position="center">
+        <div class="my-indicator" slot="indicator"></div>
+        <div slot="toolbar-left" class="pager-item" id="previous">&lt;</div>
+        <div slot="toolbar-right" class="pager-item" id="next">&gt;</div>
+        <sliding-tabs-button for-tab="a">
+          <div class="button">Button A</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="b">
+          <div class="button">Button B</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="c">
+          <div class="button">Button C</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="d">
+          <div class="button">Button D</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="e">
+          <div class="button">Button E</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="f">
+          <div class="button">Button F</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="g">
+          <div class="button">Button G</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="h">
+          <div class="button">Button H</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="i">
+          <div class="button">Button I</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="j">
+          <div class="button">Button J</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="k">
+          <div class="button">Button K</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="l">
+          <div class="button">Button L</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="m">
+          <div class="button">Button M</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="n">
+          <div class="button">Button N</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="o">
+          <div class="button">Button O</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="p">
+          <div class="button">Button P</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="q">
+          <div class="button">Button Q</div>
+        </sliding-tabs-button>
+        <sliding-tabs-button for-tab="r">
+          <div class="button">Button R</div>
+        </sliding-tabs-button>
+      </sliding-tabs-toolbar>
+      <sliding-tabs-content drag-threshold="200">
+        <sliding-tab tab-name="a">Content A</sliding-tab>
+        <sliding-tab tab-name="b">Content B</sliding-tab>
+        <sliding-tab tab-name="c">Content C</sliding-tab>
+        <sliding-tab tab-name="d">Content D</sliding-tab>
+        <sliding-tab tab-name="e">Content E</sliding-tab>
+        <sliding-tab tab-name="f">Content F</sliding-tab>
+        <sliding-tab tab-name="g">Content G</sliding-tab>
+        <sliding-tab tab-name="h">Content H</sliding-tab>
+        <sliding-tab tab-name="i">Content I</sliding-tab>
+        <sliding-tab tab-name="j">Content J</sliding-tab>
+        <sliding-tab tab-name="k">Content K</sliding-tab>
+        <sliding-tab tab-name="l">Content L</sliding-tab>
+        <sliding-tab tab-name="m">Content M</sliding-tab>
+        <sliding-tab tab-name="n">Content N</sliding-tab>
+        <sliding-tab tab-name="o">Content O</sliding-tab>
+        <sliding-tab tab-name="p">Content P</sliding-tab>
+        <sliding-tab tab-name="q">Content Q</sliding-tab>
+        <sliding-tab tab-name="r">Content R</sliding-tab>
+      </sliding-tabs-content>
+    </sliding-tabs>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			var toolbar = document.getElementById('toolbar');
-			var previous = document.getElementById('previous');
-			var next = document.getElementById('next');
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toolbar = document.getElementById('toolbar');
+      var previous = document.getElementById('previous');
+      var next = document.getElementById('next');
 
-			previous.addEventListener('click', function () {
-				toolbar.scrollToLeft();
-			});
-			next.addEventListener('click', function () {
-				toolbar.scrollToRight();
-			});
-		}, false); 
-	</script>
-
+      previous.addEventListener('click', function () {
+        toolbar.scrollToLeft();
+      });
+      next.addEventListener('click', function () {
+        toolbar.scrollToRight();
+      });
+    }, false); 
+  </script>
 </body>
 
 </html>

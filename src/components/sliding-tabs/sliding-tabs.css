@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .sliding-tabs-container {
 	margin: 0;
 	padding: 0;

@@ -1,5 +1,6 @@
 dist/
 www/
+loader/
 
 *~
 *.sw[mnpcod]
@@ -23,7 +24,3 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
-/node_modules
-/dist
-/.stencil
-/www

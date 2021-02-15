@@ -1,12 +1,13 @@
-import { Component, Element, Event, EventEmitter, Listen, State, Prop } from '@stencil/core';
-import { SlidingTabsContent } from './sliding-tabs-content/sliding-tabs-content';
-import { SlidingTabsToolbar } from './sliding-tabs-toolbar/sliding-tabs-toolbar';
+import { Component, Host, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+import { SlidingTabsContent } from '../sliding-tabs-content/sliding-tabs-content';
+import { SlidingTabsToolbar } from '../sliding-tabs-toolbar/sliding-tabs-toolbar';
 
 @Component({
 	tag: 'sliding-tabs',
-	styleUrl: 'sliding-tabs.scss'
+	styleUrl: 'sliding-tabs.css',
+	shadow: false,
 })
-export class ScrollTabs {
+export class SlidingTabs {
 	private _toolbar: SlidingTabsToolbar;
 	private _content: SlidingTabsContent;
 
@@ -14,7 +15,7 @@ export class ScrollTabs {
 	@Event() tabChanged: EventEmitter;
 	@Prop({ mutable: true }) activeTabIndex?: number;
 	@Prop({ mutable: true }) activeTab?: string;
-	
+
 	@State() tabs: string[] = [];
 
 	@Listen('slidingTabsTabLoaded', { capture: true })
@@ -24,62 +25,63 @@ export class ScrollTabs {
 
 	@Listen('slidingTabsPanIndexChange', { capture: true })
 	handlePanIndexChange(ev: CustomEvent) {
-		if(this._toolbar) {
+		if (this._toolbar) {
 			if (ev.detail !== null) {
 				this._toolbar.setActiveTab(this.tabs[ev.detail], ev.detail);
 				this._toolbar.movePanIndicator(null);
 			} else {
 				this._toolbar.movePanIndicator();
 			}
-		}		
+		}
 	}
 
-	@Listen('slidingTabsPanChange', {capture: true})
+	@Listen('slidingTabsPanChange', { capture: true })
 	handlePanChange(ev: CustomEvent) {
-		if(this._toolbar) {
+		if (this._toolbar) {
 			this._toolbar.movePanIndicator(ev.detail);
-		}		
+		}
 	}
 
-	@Listen('slidingTabsContentLoaded', {capture: true})
+	@Listen('slidingTabsContentLoaded', { capture: true })
 	handleTabsContentLoaded(ev: CustomEvent<SlidingTabsContent>) {
 		this._content = ev.detail;
 	}
 
-	@Listen('slidingTabsToolbarLoaded', {capture: true})
+	@Listen('slidingTabsToolbarLoaded', { capture: true })
 	handleTabsToolbarLoaded(ev: CustomEvent<SlidingTabsToolbar>) {
 		this._toolbar = ev.detail;
 		this._content && this.activeTab && this.setActiveTabIndex(this.activeTabIndex);
 	}
 
-	@Listen('slidingTabsActiveTabChange', {capture: true})
+	@Listen('slidingTabsActiveTabChange', { capture: true })
 	handleTabChange(ev: CustomEvent<string>) {
 		this.setActiveTabIndex(this.tabs.findIndex(t => t === ev.detail));
 	}
 
 	componentDidLoad() {
-		this.initTabs();
+		setTimeout(() => this.initTabs());
 	}
 
-	componentDidUpdate() {
-		if(this.activeTabIndex !== this.tabs.indexOf(this.activeTab)) {
+	componentWillUpdate() {
+		if (this.activeTabIndex !== this.tabs.indexOf(this.activeTab)) {
 			this.setActiveTabIndex(this.tabs.indexOf(this.activeTab));
 		}
 	}
 
 	private setActiveTabIndex(index: number) {
-		if(this.tabs[index]) {
+		index = Math.max(0, index);
+		if (this.tabs[index]) {
 			this.activeTabIndex = index;
 			this.activeTab = this.tabs[index];
-			if(this._toolbar) {
+			if (this._toolbar) {
 				this._toolbar.movePanIndicator();
 				this._toolbar.setActiveTab(this.tabs[index], this.activeTabIndex);
 			}
-			if(this._content) {
+			if (this._content) {
 				this._content.activeTabIndex = this.activeTabIndex;
 			}
-			this.tabChanged.emit({name: this.tabs[index], index: index});
-		}		
+			this.tabChanged.emit({ name: this.tabs[index], index: index });
+		}
 	}
 
 	private initTabs() {
@@ -89,9 +91,9 @@ export class ScrollTabs {
 		for (let i = 0; i < tabs.length; i++) {
 			tabs[i].setStateHandler((name: string) => this.setTabName(i, name));
 		}
-		if(this.activeTab) {
-			this.activeTabIndex = this.tabs.indexOf(this.activeTab) || 0;
-		}
+
+		this.activeTabIndex = Math.max(this.tabs.indexOf(this.activeTab), 0);
+		
 		if (tabs.length) {
 			this.setActiveTabIndex(this.activeTabIndex || 0);
 		}
@@ -115,9 +117,12 @@ export class ScrollTabs {
 
 	render() {
 		return (
-			<div class="sliding-tabs-container">
-				<slot />
-			</div>
+			<Host>
+				<div class="sliding-tabs-container">
+					<slot></slot>
+				</div>
+			</Host>
 		);
 	}
+
 }

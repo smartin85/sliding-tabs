@@ -1,30 +1,21 @@
 import { Config } from '@stencil/core';
-import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'sliding-tabs',
-  outputTargets:[
+  outputTargets: [
     {
-      type: 'dist'
+      type: 'dist',
+      esmLoaderPath: '../loader',
+    },
+    {
+      type: 'dist-custom-elements-bundle',
+    },
+    {
+      type: 'docs-readme',
     },
     {
       type: 'www',
-      serviceWorker: null
-    }
+      serviceWorker: null, // disable service workers
+    },
   ],
-  bundles: [
-    {
-      components: [
-        'sliding-tabs', 
-        'sliding-tab', 
-        'sliding-tabs-button', 
-        'sliding-tabs-content', 
-        'sliding-tabs-indicator', 
-        'sliding-tabs-toolbar'
-      ]
-    }
-  ],
-  plugins: [
-    sass()
-  ]
 };

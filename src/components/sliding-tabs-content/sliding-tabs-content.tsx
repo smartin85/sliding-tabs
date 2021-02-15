@@ -1,9 +1,10 @@
-import { Component, State, Event, EventEmitter, Prop } from '@stencil/core';
-import { PanGesture } from '../PanGesture';
+import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { PanGesture } from '../../utils/pan-gesture';
 
 @Component({
 	tag: 'sliding-tabs-content',
-	styleUrl: 'sliding-tabs-content.scss'
+	styleUrl: 'sliding-tabs-content.css',
+	shadow: false,
 })
 export class SlidingTabsContent {
 	private _currentPanIndex?: number;
@@ -12,21 +13,21 @@ export class SlidingTabsContent {
 
 	@Prop() dragThreshold?: number;
 	@Prop() flickDistance?: number;
-	
+
 	@State() activeTabIndex?: number;
 	@State() tabs: string[];
 
 	@Event() slidingTabsPanIndexChange: EventEmitter;
 	@Event() slidingTabsPanChange: EventEmitter;
 	@Event() slidingTabsContentLoaded: EventEmitter;
-	@Event({bubbles: true}) slidingTabsActiveTabChange: EventEmitter;
+	@Event({ bubbles: true }) slidingTabsActiveTabChange: EventEmitter;
 
 	componentDidLoad() {
 		this.initPanning();
 		this.slidingTabsContentLoaded.emit(this);
 	}
 
-	componentDidUnload() {
+	disconnectedCallback() {
 		this._panGesture.unsubscribe();
 	}
 
@@ -55,7 +56,7 @@ export class SlidingTabsContent {
 		});
 		this._panGesture.onFlick(dir => {
 			const newIndex = this.activeTabIndex + dir;
-			if(newIndex <= this.tabs.length -1 && newIndex >= 0) {
+			if (newIndex <= this.tabs.length - 1 && newIndex >= 0) {
 				this.slidingTabsActiveTabChange.emit(this.tabs[newIndex]);
 			}
 		})
@@ -63,11 +64,14 @@ export class SlidingTabsContent {
 
 	render() {
 		return (
-			<div class="sliding-tabs-content">
-				<div class="sliding-tabs-scrollarea" ref={(el: HTMLElement) => this._tabScrollArea = el} style={{ left: this.activeTabIndex * -100 + '%' }}>
-					<slot />
+			<Host>
+				<div class="sliding-tabs-content">
+					<div class="sliding-tabs-scrollarea" ref={(el: HTMLElement) => this._tabScrollArea = el} style={{ left: (this.activeTabIndex ?? 0) * -100 + '%' }}>
+						<slot></slot>
+					</div>
 				</div>
-			</div>
+			</Host>
 		);
 	}
+
 }

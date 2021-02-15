@@ -103,7 +103,7 @@ export class PanGesture {
 	}
 
 	private isContentScrolled(element) {
-		while(element !== this._element) {
+		while(element && element !== this._element) {
 			if(element.scrollLeft && element.scrollLeft + element.offsetWidth !== element.scrollWidth) {
 				return false;
 			}

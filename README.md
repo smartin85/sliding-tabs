@@ -1,6 +1,11 @@
-[![Built With Stencil][stencil-image]][stencil-url]
-
 # sliding-tabs
+[![Built With Stencil][stencil-image]][stencil-url]
+[![MIT License][license-image]][license-url] 
+[![npm version][npm-image]][npm-url]
+[![npm downloads][downloads-image]][npm-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
+
+[![Buy me a coffee][buy-me-a-coffee-image]][buy-me-a-coffee-url]
 
 sliding-tabs is a web component buildt with [Stencil][stencil-url] for slideable tabs or just for a simple slider.
 
@@ -92,13 +97,13 @@ Without the toolbar, you can use this component as a simple slider:
 	</sliding-tabs-content>
 	<sliding-tabs-toolbar>
 		<sliding-tabs-button for-tab="a">
-		Button A
+		    Button A
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="b">
-		Button B
+		    Button B
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="c">
-		Button C
+		    Button C
 		</sliding-tabs-button>
 	</sliding-tabs-toolbar>
 </sliding-tabs>
@@ -110,13 +115,13 @@ The toolbar can also be placed on top of the content:
 <sliding-tabs>
 	<sliding-tabs-toolbar>
 		<sliding-tabs-button for-tab="a">
-		Button A
+		    Button A
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="b">
-		Button B
+		    Button B
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="c">
-		Button C
+		    Button C
 		</sliding-tabs-button>
 	</sliding-tabs-toolbar>
 	<sliding-tabs-content>
@@ -139,19 +144,19 @@ You can add an indicator, which shows the current tab position relative to the b
 	<sliding-tabs-toolbar indicator-placement="top">
 		<div class="my-indicator" slot="indicator"></div>
 		<sliding-tabs-button for-tab="a">
-		Button A
+		    Button A
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="b">
-		Button B
+		    Button B
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="c">
-		Button C
+		    Button C
 		</sliding-tabs-button>
 	</sliding-tabs-toolbar>
 </sliding-tabs>
 ```
 
-There are two more Slots you can use for additional buttons:
+There are two more slots you can use for additional buttons:
 
 ```html
 <sliding-tabs>	
@@ -165,13 +170,13 @@ There are two more Slots you can use for additional buttons:
 		<div slot="toolbar-left" class="pager-item" id="previous">&lt;</div>
       	<div slot="toolbar-right" class="pager-item" id="next">&gt;</div>
 		<sliding-tabs-button for-tab="a">
-		Button A
+		    Button A
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="b">
-		Button B
+		    Button B
 		</sliding-tabs-button>
 		<sliding-tabs-button for-tab="c">
-		Button C
+		    Button C
 		</sliding-tabs-button>
 	</sliding-tabs-toolbar>
 </sliding-tabs>
@@ -245,15 +250,19 @@ interface tabChandedEvent {
 ```
 
 ### Methods on the DOM-Element
-`scrollToButton(name: string)`: Scroll to a specific button (if `scrollable="true"`)
+`async scrollToButton(name: string)`: Scroll to a specific button (if `scrollable="true"`)
 
-`scrollToLeft()`: Scroll the toolbar to the left (previous button).
+`async scrollToLeft()`: Scroll the toolbar to the left (previous button).
 
-`scrollToRight()`: Scroll the toolbar to the right (next button).
+`async scrollToRight()`: Scroll the toolbar to the right (next button).
 
-`setActiveTab()`: Switch to a specific tab.
+`async setActiveTab()`: Switch to a specific tab.
 
 ## Changelog
+
+### 1.2.4
+* Updated dependencies
+* Fixed some Bugs
 
 ### 1.2.0
 * Added `drag-threshold` property to `sliding-tabs-content`
@@ -267,3 +276,17 @@ interface tabChandedEvent {
 
 [stencil-url]: https://stenciljs.com/
 [stencil-image]: https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square
+
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE
+
+[npm-image]: https://badge.fury.io/js/sliding-tabs.svg
+[npm-url]: https://www.npmjs.com/package/sliding-tabs
+[downloads-image]: https://img.shields.io/npm/dt/sliding-tabs.svg
+
+[snyk-image]: https://snyk.io/test/github/smartin85/sliding-tabs/badge.svg
+[snyk-url]: https://snyk.io/test/github/smartin85/sliding-tabs
+
+
+[buy-me-a-coffee-image]: https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png
+[buy-me-a-coffee-url]: https://www.buymeacoffee.com/smartin
