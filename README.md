@@ -260,9 +260,12 @@ interface tabChandedEvent {
 
 ## Changelog
 
+### 1.2.5
+* Fixed some bugs
+
 ### 1.2.4
 * Updated dependencies
-* Fixed some Bugs
+* Fixed some bugs
 
 ### 1.2.0
 * Added `drag-threshold` property to `sliding-tabs-content`

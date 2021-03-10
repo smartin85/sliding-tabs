@@ -32,7 +32,7 @@ export class SlidingTab {
 	}
 
 	disconnectedCallback() {
-		this._stateHandler(null);
+		this._stateHandler && this._stateHandler(null);
 	}
 
 	render() {

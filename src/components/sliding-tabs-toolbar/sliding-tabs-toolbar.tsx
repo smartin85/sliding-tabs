@@ -11,7 +11,7 @@ export class SlidingTabsToolbar {
 	private _buttonContainer: HTMLElement;
 	private _buttons: HTMLSlidingTabsButtonElement[] = [];
 	private _containerElement: HTMLElement;
-	private _panGesture: PanGesture;
+	private _panGesture?: PanGesture;
 	private _panIndicator: SlidingTabsIndicator;
 	private _wheelHandler = (ev: WheelEvent) => this.handleWheel(ev);
 
@@ -120,7 +120,7 @@ export class SlidingTabsToolbar {
 	}
 
 	disconnectedCallback() {
-		this._panGesture.unsubscribe();
+		this._panGesture?.unsubscribe();
 		this.initWheelHandler();
 	}
 

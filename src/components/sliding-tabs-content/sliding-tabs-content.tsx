@@ -8,7 +8,7 @@ import { PanGesture } from '../../utils/pan-gesture';
 })
 export class SlidingTabsContent {
 	private _currentPanIndex?: number;
-	private _panGesture: PanGesture;
+	private _panGesture?: PanGesture;
 	private _tabScrollArea: HTMLElement;
 
 	@Prop() dragThreshold?: number;
@@ -28,7 +28,7 @@ export class SlidingTabsContent {
 	}
 
 	disconnectedCallback() {
-		this._panGesture.unsubscribe();
+		this._panGesture?.unsubscribe();
 	}
 
 	private initPanning() {
